@@ -37,48 +37,58 @@ const { image, title, authors, venue, award, abstract, links } = Astro.props;
 <style>
   .pub-card {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 28px;
-    padding: 32px 0;
-    border-top: 1px solid #eee;
+    grid-template-columns: 331px 1fr;
+    gap: 34px;
+    padding: 16px 0;
   }
 
   .pub-image {
     width: 100%;
+    max-width: 331px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
   }
 
   .pub-title {
-    font-size: 19px;
-    line-height: 1.4;
+    font-family: var(--font-heavy);
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 30.6px;
+    margin: 8.5px 0;
   }
 
   .pub-venue {
-    font-weight: 400;
+    font-family: var(--font-light);
+    font-weight: 300;
     color: var(--muted);
   }
 
   .pub-authors {
     margin: 8px 0 0;
-    font-size: 14px;
-    color: var(--muted);
+    font-size: 15px;
+    line-height: 27px;
+    font-style: italic;
+    color: var(--text);
   }
 
   .pub-award {
     margin: 8px 0 0;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 15px;
+    line-height: 27px;
+    font-family: var(--font-heavy);
+    font-weight: 800;
   }
 
   .pub-abstract {
     margin: 12px 0 0;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 27px;
   }
 
   .pub-links {
     margin: 12px 0 0;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 27px;
   }
 
   @media (max-width: 640px) {
