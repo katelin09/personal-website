@@ -73,11 +73,10 @@ const midGallery = [
 ];
 
 const gallery = [
-  '/images/gallery-1.jpg',
-  '/images/gallery-2.jpg',
-  '/images/gallery-4.jpg',
-  '/images/gallery-5.jpg',
-  '/images/gallery-6.jpg',
+  { src: '/images/gallery-1.jpg', href: '/pneumesh' },
+  { src: '/images/gallery-2.jpg', href: '/cobbie' },
+  { src: '/images/gallery-4.jpg', href: '/aquabot' },
+  { src: '/images/gallery-5.jpg', href: '/olfacenhancer' },
 ];
 ---
 <Layout>
@@ -91,11 +90,10 @@ const gallery = [
         I intern at <a href="https://med.stanford.edu/ladd-lab/get-involved.html" target="_blank" rel="noopener noreferrer">Ladd Lab</a> in the summer of 2026 at Stanford University School of Medicine, advised by <strong>Dr. Amy Ladd</strong> and <strong>Deborah Kenney</strong>.
       </p>
       <p>
-        I develop <strong>robotic functionality through mechanical intelligence</strong>. With a focus on medicine and rehabilitation,
-        I have introduced a new class of assistive wearables: fully passive devices that mimic the adaptive behaviors of robotic
-        systems. I collaborated with clinicians and biomechanical scientists to create functional prototypes, which have been
-        evaluated with both clinicians and patients. This process included computational design and fabrication pipelines to
-        enable personalization.
+        I develop <strong>robotic functionality through mechanical intelligence</strong>. Working at the intersection of HCI,
+        mechanical engineering, computer graphics, and medicine, I introduced a new class of fully passive assistive wearables
+        that mimic the adaptive behaviors of robotic systems. I design, computationally model, and fabricate these personalized,
+        fully unpowered devices, which are evaluated with clinicians and patients.
       </p>
       <p>
         Before joining CMU, I pursued my master's degree in Computer Science at Stanford University. I did my undergrad and
@@ -126,11 +124,11 @@ const gallery = [
     <h2>Robotic functionality through mechanical intelligence</h2>
     <img src="/images/mechanical-intelligence.jpg" alt="Robotic functionality through mechanical intelligence" class="intelligence-image" />
     <p>
-      I embed capabilities typically found only in actuated robotic systems into <strong>fully passive structures</strong>,
-      enabling them to <strong>sense, decide, and respond without the need for motors, sensors, or batteries</strong>.
-      Mechanically intelligent devices combine the low-cost and lightweight benefits of static devices with the multifunctional
-      and personalized adaptability of robotic ones. They dynamically adjust to the context and the user's needs without relying
-      on electronics or batteries.
+      I realize capabilities typically found only in actuated robotic systems within <strong>fully passive structures</strong>.
+      By <strong>sensing, deciding, and responding solely through their geometries</strong>, these structures dynamically adjust
+      to both environmental context and user needs without the need for motors, sensors, or batteries. These mechanically
+      intelligent devices combine the low-cost and lightweight benefits of static devices with the multifunctional, personalized
+      adaptability of active robotic systems.
     </p>
   </section>
 
@@ -155,8 +153,8 @@ const gallery = [
   </section>
 
   <section class="gallery">
-    {gallery.map((src) => (
-      <img src={src} alt="" loading="lazy" />
+    {gallery.map(({ src, href }) => (
+      <a href={href}><img src={src} alt="" loading="lazy" /></a>
     ))}
   </section>
 </Layout>
@@ -258,7 +256,7 @@ const gallery = [
   .gallery {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(5, 178px);
+    grid-template-columns: repeat(4, 178px);
     gap: 10px;
   }
 

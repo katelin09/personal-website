@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Demo {
+  heading: string;
+  image: string;
+  caption: string;
+}
+
+interface Props {
+  title: string;
+  image: string;
+  authors: string;
+  venue: string;
+  abstract: string;
+  keywords?: string;
+  skill?: string;
+  links: Link[];
+  demos?: Demo[];
+}
+
+const { title, image, authors, venue, abstract, keywords, skill, links, demos = [] } = Astro.props;
+---
+<Layout title={`${title} — Yuyu Lin`}>
+  <a href="/" class="back-link">&larr; Back</a>
+  <article class="project">
+    <h1 class="project-title">{title} <span class="project-venue">({venue})</span></h1>
+    <p class="project-authors">{authors}</p>
+    {skill && <p class="project-skill"><strong>Skill:</strong> {skill}</p>}
+    <img src={image} alt={title} class="project-image" />
+    <p class="project-abstract">{abstract}</p>
+    {keywords && <p class="project-keywords"><strong>Keywords:</strong> {keywords}</p>}
+    {links.length > 0 && (
+      <p class="project-links">
+        {links.map((link, i) => (
+          <>
+            {i > 0 && " | "}
+            <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+          </>
+        ))}
+      </p>
+    )}
+    {demos.length > 0 && (
+      <div class="project-demos">
+        {demos.map((demo) => (
+          <div class="project-demo">
+            <h2 class="demo-heading">{demo.heading}</h2>
+            <img src={demo.image} alt={demo.heading} class="demo-image" />
+            <p class="demo-caption">{demo.caption}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </article>
+</Layout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .project {
+    max-width: 700px;
+    padding-bottom: 60px;
+  }
+
+  .project-title {
+    font-size: 26px;
+    margin-bottom: 8.5px;
+  }
+
+  .project-venue {
+    font-family: var(--font-light);
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .project-authors {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 27px;
+    font-style: italic;
+  }
+
+  .project-skill {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 27px;
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 24px 0;
+  }
+
+  .project-abstract {
+    margin: 0 0 24px;
+    font-size: 15px;
+    line-height: 27px;
+  }
+
+  .project-links {
+    font-size: 15px;
+    line-height: 27px;
+  }
+
+  .project-keywords {
+    margin: 12px 0 0;
+    font-size: 15px;
+    line-height: 27px;
+    color: var(--muted);
+  }
+
+  .project-demos {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+  }
+
+  .project-demo {
+    padding: 32px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .demo-heading {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .demo-image {
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .demo-caption {
+    font-size: 15px;
+    line-height: 27px;
+  }
+</style>
