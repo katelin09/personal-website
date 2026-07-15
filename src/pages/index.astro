@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+
+const publications = [
+  {
+    image: '/images/knee-exo.jpg',
+    title: 'Towards Accessible Mobility Support: User-Centered Design of a Passive, Multi-Functional, Low-Cost Knee Exoskeleton',
+    venue: "CHI'26",
+    authors: 'Yuyu Lin, Yujia Liu, Emma Kim, Alexandra Ion',
+    abstract:
+      'Walking aids are critical for people with mobility impairments. In this paper, we propose a fully passive knee exoskeleton design that combines the accessibility of static braces with the adaptive functionality of robotic systems. Our design employs a mechanical trigger under the foot to lock and release the knee joint in sync with the gait cycle, enabling more natural walking without electronics or actuation. Using human-centered methods, we conducted interviews with clinicians and orthosis users to guide our design and evaluated an early prototype as a design probe with stakeholders.',
+    links: [
+      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2026-04-knee-exoskeleton/' },
+      { label: 'DOI', href: 'https://doi.org/10.1145/3772318.3791886' },
+      { label: 'Video', href: 'https://youtu.be/OQARGLUTGTw' },
+      { label: 'Preview', href: 'https://youtu.be/DC7gqt8v-yM' },
+    ],
+  },
+  {
+    image: '/images/bistable-brace.jpg',
+    title: 'Personalized Bistable Orthoses for Rehabilitation of Finger Joints',
+    venue: "UIST'25",
+    authors: 'Yuyu Lin, Dian Zhu, Anoushka Naidu, Kenneth Yu, Deon Harper, Eni Halilaj, Douglas Weber, Deborah Ellen Kenney, Adam J. Popchak, Mark Baratz, Alexandra Ion',
+    award: "Best Demo Honorable Mention (Jury's Choice)",
+    abstract:
+      'Current orthoses immobilize fingers. To facilitate both rehabilitation and dexterity, we introduce a novel multifunctional yet unpowered finger orthosis design. Our design supports easy switching between two distinct states: a stiff state for immobilization and a flexible state for mobilization.',
+    links: [
+      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-09-bistable-brace/' },
+      { label: 'DOI', href: 'https://doi.org/10.1145/3746059.3747643' },
+      { label: 'Video', href: 'https://youtu.be/i9aP490Lh38' },
+      { label: '30s Preview', href: 'https://youtu.be/2-JZrDFOS8s' },
+    ],
+  },
+  {
+    image: '/images/wearable-mat-prop.jpg',
+    title: 'Wearable Material Properties: Passive Wearable Microstructures as Adaptable Interfaces for the Physical Environment',
+    venue: "CHI'25",
+    authors: 'Yuyu Lin, Hatice Gokcen Guner, Jianzhe Gu, Sonia Prashant, Alexandra Ion',
+    abstract:
+      'Users interact with static objects daily, but their preferences and needs may vary. Making the objects dynamic or adaptable requires updating all objects. Instead, we propose a novel wearable interface that empowers users to adjust perceived material properties.',
+    links: [
+      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-04-wearable-mat-prop/' },
+      { label: 'DOI', href: 'https://doi.org/10.1145/3706598.3714215' },
+      { label: 'Video', href: 'https://youtu.be/AqQ9LccZEow' },
+    ],
+  },
+  {
+    image: '/images/coneact.jpg',
+    title: 'ConeAct: A Multistable Actuator for Dynamic Materials',
+    venue: "CHI'24",
+    authors: 'Yuyu Lin, Jesse T. Gonzalez, Zhitong Cui, Yash Rajeev Banka, Alexandra Ion',
+    abstract:
+      'In this paper, we propose ConeAct, a cone-shaped actuator that can extend, contract, and bend in multiple directions to support rich expression in dynamic materials. A key benefit of our actuator is that it is self-contained and portable as the whole system. We designed our actuator’s structure to be multistable to hold its shape passively, while we control its transition between states using active materials, i.e., shape memory alloys.',
+    links: [
+      { label: 'Project Page', href: 'https://www.yuyu.dev/coneact' },
+      { label: 'DOI', href: 'https://doi.org/10.1145/3613904.3642949' },
+      { label: 'Video', href: 'https://www.youtube.com/watch?v=aN3d8D7VyKU' },
+    ],
+  },
+];
+
+const gallery = [
+  '/images/gallery-1.jpg',
+  '/images/gallery-2.jpg',
+  '/images/gallery-3.jpg',
+  '/images/gallery-4.jpg',
+  '/images/gallery-5.jpg',
+  '/images/gallery-6.jpg',
+];
+---
+<Layout>
+  <section class="hero">
+    <img src="/images/profile.jpg" alt="Yuyu Lin" class="hero-photo" />
+    <div class="hero-text">
+      <p>
+        Hi, I'm a Ph.D. student in the
+        <a href="https://interactive-structures.org/" target="_blank" rel="noopener noreferrer">Interactive Structures Lab</a>
+        at Carnegie Mellon University (CMU) Human-Computer Interaction Institute (HCII), advised by <strong>Prof. Alexandra Ion</strong>.
+      </p>
+      <p>
+        My current work focuses on the <strong>design and fabrication of personalized assistive and rehabilitative wearables</strong>.
+        I am passionate about discovering beautifully simple solutions to complex problems, such as in developing exoskeletons for
+        rehabilitation using simple geometry. I work at the intersection of HCI, biomechanics, medicine, and computer science.
+        I engineer active materials and passive structures with adaptive properties that respond to users' dynamic requirements
+        and body movements. I create simulation and customization pipelines that enable end users to personalize their wearables.
+      </p>
+      <p>
+        Before joining CMU, I pursued my master's degree in Computer Science at Stanford University. I did my undergrad and
+        master's in Industrial Design at Zhejiang University, where I'm honored to be one of the Morningside Cultural China Scholars.
+      </p>
+      <p class="contact-label"><strong>Contact me:</strong></p>
+      <p><a href="mailto:yuyulin@andrew.cmu.edu">yuyulin@andrew.cmu.edu</a></p>
+      <p>
+        <a href="https://scholar.google.com/citations?user=6uOnyQUAAAAJ&hl=en&inst=3203679203499159833&oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        | <a href="https://github.com/katelin09" target="_blank" rel="noopener noreferrer">Github</a>
+        | <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="work">
+    <h2>My work</h2>
+    {publications.map((pub) => <PublicationCard {...pub} />)}
+  </section>
+
+  <section class="gallery">
+    {gallery.map((src) => (
+      <img src={src} alt="" loading="lazy" />
+    ))}
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    padding: 40px 0 60px;
+  }
+
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    align-self: start;
+  }
+
+  .hero-text p {
+    margin: 0 0 20px;
+    text-align: justify;
+  }
+
+  .contact-label {
+    margin-bottom: 6px !important;
+  }
+
+  .work h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .gallery {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  .gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  @media (max-width: 720px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-photo {
+      max-width: 280px;
+    }
+    .gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

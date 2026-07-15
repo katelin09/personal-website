@@ -1,0 +1,92 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  image: string;
+  title: string;
+  authors: string;
+  venue: string;
+  award?: string;
+  abstract: string;
+  links: Link[];
+}
+
+const { image, title, authors, venue, award, abstract, links } = Astro.props;
+---
+<article class="pub-card">
+  <img src={image} alt={title} class="pub-image" loading="lazy" />
+  <div class="pub-body">
+    <h3 class="pub-title">{title} <span class="pub-venue">({venue})</span></h3>
+    <p class="pub-authors">{authors}</p>
+    {award && <p class="pub-award">{award}</p>}
+    <p class="pub-abstract">{abstract}</p>
+    <p class="pub-links">
+      {links.map((link, i) => (
+        <>
+          {i > 0 && " | "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+        </>
+      ))}
+    </p>
+  </div>
+</article>
+
+<style>
+  .pub-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    padding: 32px 0;
+    border-top: 1px solid #eee;
+  }
+
+  .pub-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .pub-title {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .pub-venue {
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .pub-authors {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .pub-award {
+    margin: 8px 0 0;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .pub-abstract {
+    margin: 12px 0 0;
+    font-size: 14px;
+  }
+
+  .pub-links {
+    margin: 12px 0 0;
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .pub-card {
+      grid-template-columns: 1fr;
+    }
+    .pub-image {
+      max-width: 260px;
+    }
+  }
+</style>
