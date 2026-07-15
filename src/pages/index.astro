@@ -9,7 +9,7 @@ const publications = [
     venue: "CHI'26",
     authors: 'Yuyu Lin, Yujia Liu, Emma Kim, Alexandra Ion',
     abstract:
-      'Walking aids are critical for people with mobility impairments. In this paper, we propose a fully passive knee exoskeleton design that combines the accessibility of static braces with the adaptive functionality of robotic systems. Our design employs a mechanical trigger under the foot to lock and release the knee joint in sync with the gait cycle, enabling more natural walking without electronics or actuation. Using human-centered methods, we conducted interviews with clinicians and orthosis users to guide our design and evaluated an early prototype as a design probe with stakeholders.',
+      'Walking aids are critical for people with mobility impairments. In this paper, we propose a fully passive knee exoskeleton design that combines the accessibility of static braces with the adaptive functionality of robotic systems. Our design employs a mechanical trigger under the foot to lock and release the knee joint in sync with the gait cycle, enabling more natural walking without electronics or actuation.',
     links: [
       { label: 'Project Page', href: 'https://interactive-structures.org/publications/2026-04-knee-exoskeleton/' },
       { label: 'DOI', href: 'https://doi.org/10.1145/3772318.3791886' },
@@ -51,7 +51,7 @@ const publications = [
     venue: "CHI'24",
     authors: 'Yuyu Lin, Jesse T. Gonzalez, Zhitong Cui, Yash Rajeev Banka, Alexandra Ion',
     abstract:
-      'In this paper, we propose ConeAct, a cone-shaped actuator that can extend, contract, and bend in multiple directions to support rich expression in dynamic materials. A key benefit of our actuator is that it is self-contained and portable as the whole system. We designed our actuator’s structure to be multistable to hold its shape passively, while we control its transition between states using active materials, i.e., shape memory alloys.',
+      'In this paper, we propose ConeAct, a cone-shaped actuator that can extend, contract, and bend in multiple directions to support rich expression in dynamic materials. A key benefit of our actuator is that it is self-contained and portable as a whole system. We designed our actuator’s structure to be multistable to hold its shape passively, while we control its transition between states using active materials, i.e., shape memory alloys.',
     links: [
       { label: 'Project Page', href: 'https://www.yuyu.dev/coneact' },
       { label: 'DOI', href: 'https://doi.org/10.1145/3613904.3642949' },
@@ -60,10 +60,14 @@ const publications = [
   },
 ];
 
+const midGallery = [
+  { src: '/images/gallery-new-1.jpg', href: null },
+  { src: '/images/gallery-3.jpg', href: 'https://interactive-structures.org/publications/2023-10-parametric-haptics/' },
+];
+
 const gallery = [
   '/images/gallery-1.jpg',
   '/images/gallery-2.jpg',
-  '/images/gallery-3.jpg',
   '/images/gallery-4.jpg',
   '/images/gallery-5.jpg',
   '/images/gallery-6.jpg',
@@ -77,13 +81,14 @@ const gallery = [
         Hi, I'm a Ph.D. student in the
         <a href="https://interactive-structures.org/" target="_blank" rel="noopener noreferrer">Interactive Structures Lab</a>
         at Carnegie Mellon University (CMU) Human-Computer Interaction Institute (HCII), advised by <strong>Prof. Alexandra Ion</strong>.
+        I intern at Ladd Lab in the summer of 2026 at Stanford University School of Medicine, advised by Dr. Amy Ladd and Deborah Kenney.
       </p>
       <p>
-        My current work focuses on the <strong>design and fabrication of personalized assistive and rehabilitative wearables</strong>.
-        I am passionate about discovering beautifully simple solutions to complex problems, such as in developing exoskeletons for
-        rehabilitation using simple geometry. I work at the intersection of HCI, biomechanics, medicine, and computer science.
-        I engineer active materials and passive structures with adaptive properties that respond to users' dynamic requirements
-        and body movements. I create simulation and customization pipelines that enable end users to personalize their wearables.
+        I develop <strong>robotic functionality through mechanical intelligence</strong>. With a focus on medicine and rehabilitation,
+        I have introduced a new class of assistive wearables: fully passive devices that mimic the adaptive behaviors of robotic
+        systems. I collaborated with clinicians and biomechanical scientists to create functional prototypes, which have been
+        evaluated with both clinicians and patients. This process included computational design and fabrication pipelines to
+        enable personalization.
       </p>
       <p>
         Before joining CMU, I pursued my master's degree in Computer Science at Stanford University. I did my undergrad and
@@ -99,9 +104,36 @@ const gallery = [
     </div>
   </section>
 
+  <section class="intelligence">
+    <h2>Robotic functionality through mechanical intelligence</h2>
+    <img src="/images/mechanical-intelligence.jpg" alt="Robotic functionality through mechanical intelligence" class="intelligence-image" />
+    <p>
+      I embed capabilities typically found only in actuated robotic systems into <strong>fully passive structures</strong>,
+      enabling them to <strong>sense, decide, and respond without the need for motors, sensors, or batteries</strong>.
+      Mechanically intelligent devices combine the low-cost and lightweight benefits of static devices with the multifunctional
+      and personalized adaptability of robotic ones. They dynamically adjust to the context and the user's needs without relying
+      on electronics or batteries.
+    </p>
+  </section>
+
   <section class="work">
-    <h2>My work</h2>
-    {publications.map((pub) => <PublicationCard {...pub} />)}
+    <h2>Unpowered Intelligence</h2>
+    {publications.slice(0, 3).map((pub) => <PublicationCard {...pub} />)}
+  </section>
+
+  <section class="gallery mid-gallery">
+    {midGallery.map(({ src, href }) =>
+      href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer"><img src={src} alt="" loading="lazy" /></a>
+      ) : (
+        <img src={src} alt="" loading="lazy" />
+      )
+    )}
+  </section>
+
+  <section class="work">
+    <h2>Earlier work: Robotic Intelligence</h2>
+    {publications.slice(3).map((pub) => <PublicationCard {...pub} />)}
   </section>
 
   <section class="gallery">
@@ -140,6 +172,29 @@ const gallery = [
     margin-bottom: 8px;
   }
 
+  .intelligence {
+    padding: 40px 0 60px;
+    border-top: 1px solid #eee;
+  }
+
+  .intelligence h2 {
+    font-size: 26px;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+
+  .intelligence-image {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .intelligence p {
+    max-width: 700px;
+    text-align: justify;
+  }
+
   .gallery {
     margin-top: 60px;
     display: grid;
@@ -151,6 +206,12 @@ const gallery = [
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+  }
+
+  .mid-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 460px;
+    margin: 40px 0;
   }
 
   @media (max-width: 720px) {
