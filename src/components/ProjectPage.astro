@@ -47,6 +47,8 @@ const {
   links,
   demos = [],
 } = Astro.props;
+
+const authorParts = authors.split('Yuyu Lin');
 ---
 <Layout title={`${title} — Yuyu Lin`}>
   <a href="/" class="back-link">&larr; Back</a>
@@ -78,7 +80,14 @@ const {
     {image && <img src={image} alt={title} class="project-image" />}
 
     <h1 class="project-title">{title} <span class="project-venue">({venue})</span></h1>
-    <p class="project-authors">{authors}</p>
+    <p class="project-authors">
+      {authorParts.map((part, i) => (
+        <>
+          {part}
+          {i < authorParts.length - 1 && <strong>Yuyu Lin</strong>}
+        </>
+      ))}
+    </p>
     <p class="project-abstract">{abstract}</p>
     {keywords && <p class="project-keywords"><strong>Keywords:</strong> {keywords}</p>}
     {citation && <p class="project-citation"><strong>Publication:</strong> {citation}</p>}

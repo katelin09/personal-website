@@ -15,12 +15,20 @@ interface Props {
 }
 
 const { image, title, authors, venue, award, abstract, links } = Astro.props;
+const authorParts = authors.split('Yuyu Lin');
 ---
 <article class="pub-card">
   <img src={image} alt={title} class="pub-image" loading="lazy" />
   <div class="pub-body">
     <h3 class="pub-title">{title} <span class="pub-venue">({venue})</span></h3>
-    <p class="pub-authors">{authors}</p>
+    <p class="pub-authors">
+      {authorParts.map((part, i) => (
+        <>
+          {part}
+          {i < authorParts.length - 1 && <strong>Yuyu Lin</strong>}
+        </>
+      ))}
+    </p>
     {award && <p class="pub-award">{award}</p>}
     <p class="pub-abstract">{abstract}</p>
     <p class="pub-links">
