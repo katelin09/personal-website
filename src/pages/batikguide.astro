@@ -1,0 +1,75 @@
+---
+import ProjectPage from '../components/ProjectPage.astro';
+---
+<ProjectPage
+  title="BatikGuide: Comparing the Tangible Tutorial System and the Human Teacher in Intangible Cultural Heritage Education"
+  venue="DIS'20"
+  authors="Jiahao Guo, Yuyu Lin, Hongyu Yang, Junwu Wang, Shuo Li, Enmao Liu, Cheng Yao, Fangtian Ying"
+  youtubeId="OM4uoJzIV0w"
+  abstract="Computer-supported digital-physical tutorial systems have been widely used in the field of Intangible Cultural Heritage (ICH) education for their advances in conveying multimodal contents. However, there is limited work to compare the strengths and weaknesses of the teaching effects of the human teachers and the non-human tutorial systems in ICH education. In this paper, we designed an introductory course and presented BatikGuide, a tangible tutorial system that provides visual and vocal instructions, and real-time evaluations. Followed by we conducted a comparative experiment and analyzed the data collected from the quantitative scales, observation, and semi-structured interviews. The results revealed that there is no obvious disparity between BatikGuide and the human teacher. Although the human teacher could have better performance in professional instructions, BatikGuide remains the potential in stimulating learning motivation, large-scale replication, and public dissemination. According to these findings, we discussed the prospects of computer-based systems in ICH education and preservation."
+  keywords="Intangible cultural heritage; Intangible cultural heritage education; Batik; Tangible tutorial system; Tangible tabletop"
+  citation="Jiahao Guo, Yuyu Lin, Hongyu Yang, Junwu Wang, Shuo Li, Enmao Liu, Cheng Yao, and Fangtian Ying. 2020. Comparing the Tangible Tutorial System and the Human Teacher in Intangible Cultural Heritage Education. In Proceedings of the 2020 ACM Designing Interactive Systems Conference (DIS '20). ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/3357236.3395449"
+  links={[
+    { label: 'DOI', href: 'https://doi.org/10.1145/3357236.3395449' },
+  ]}
+>
+  <h2 class="section-heading">Service Design</h2>
+  <p class="section-text">We designed the teaching process of an introductory Batik course. a) have a basic understanding of the course and batik art, b) explain the characteristics of three different waxes, c) tell the story related to the origin of batik, d) explain the structure and the development history of brass knife, e) explain differences between different size of brass knives, f) teach how to use the brass knife, g) tell the legend of the origin of the Miao nationality with the folklore of Mother Butterfly, and explain the significance of batik to the Miao people, h) draw batik pattern under the instruction of the teacher as a final practice.</p>
+  <img src="/images/batik-teaching.jpg" alt="Service Design" class="section-image" />
+  <p class="section-text">Learners could get real-time feedback from our acoustic-optic interactive system.</p>
+
+  <h2 class="section-heading">Table Master</h2>
+  <img src="/images/batik-hardware.jpg" alt="Table Master" class="section-image section-image--hardware" />
+
+  <h2 class="section-heading">Real-time Multitask Evaluation System</h2>
+  <img src="/images/batik-evaluation.jpg" alt="Real-time Multitask Evaluation System" class="section-image section-image--evaluation" />
+  <p class="section-text">We designed the evaluation framework flow including color detector, hand gesture recognition and similarity matching. When the color detector detects "blue", Gesture recognizer start the task for 30 seconds, and repeat one time if the success rate less than 50%; when the Color detector detects "green", clip the figure and save it; when the Color detector detects "purple", clip the user drawing figure and compare it with the saved figure.</p>
+
+  <div class="section-row">
+    <img src="/images/batik-step1.jpg" alt="" loading="lazy" />
+    <img src="/images/batik-step2.jpg" alt="" loading="lazy" />
+    <img src="/images/batik-step3.jpg" alt="" loading="lazy" />
+  </div>
+</ProjectPage>
+
+<style>
+  .section-heading {
+    font-size: 20px;
+    margin: 32px 0 12px;
+  }
+
+  .section-text {
+    font-size: 15px;
+    line-height: 27px;
+    margin: 0 0 12px;
+  }
+
+  .section-image {
+    width: 100%;
+    display: block;
+    margin: 12px 0;
+  }
+
+  .section-image--hardware {
+    width: 293px;
+    margin-left: auto;
+  }
+
+  .section-image--evaluation {
+    width: 540px;
+    max-width: 100%;
+  }
+
+  .section-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .section-row img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+</style>

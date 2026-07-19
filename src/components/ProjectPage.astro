@@ -9,32 +9,79 @@ interface Link {
 interface Demo {
   heading: string;
   image: string;
-  caption: string;
+  caption?: string;
 }
 
 interface Props {
   title: string;
-  image: string;
+  image?: string;
+  video?: string;
+  youtubeId?: string;
+  mediaPosition?: 'top' | 'bottom';
+  gallery?: string[];
+  galleryPosition?: 'top' | 'bottom';
+  galleryStyle?: 'masonry' | 'thumbnails';
   authors: string;
   venue: string;
   abstract: string;
   keywords?: string;
-  skill?: string;
+  citation?: string;
   links: Link[];
   demos?: Demo[];
 }
 
-const { title, image, authors, venue, abstract, keywords, skill, links, demos = [] } = Astro.props;
+const {
+  title,
+  image,
+  video,
+  youtubeId,
+  mediaPosition = 'top',
+  gallery = [],
+  galleryPosition = 'bottom',
+  galleryStyle = 'thumbnails',
+  authors,
+  venue,
+  abstract,
+  keywords,
+  citation,
+  links,
+  demos = [],
+} = Astro.props;
 ---
 <Layout title={`${title} — Yuyu Lin`}>
   <a href="/" class="back-link">&larr; Back</a>
   <article class="project">
+    {gallery.length > 0 && galleryPosition === 'top' && (
+      <div class={`project-gallery project-gallery--${galleryStyle}`}>
+        {gallery.map((src) => (
+          <img src={src} alt="" loading="lazy" class="project-gallery-image" />
+        ))}
+      </div>
+    )}
+
+    {(video || youtubeId) && mediaPosition === 'top' && (
+      <>
+        {video && <video src={video} controls class="project-video" />}
+        {youtubeId && (
+          <div class="project-youtube">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}`}
+              title={title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        )}
+      </>
+    )}
+
+    {image && <img src={image} alt={title} class="project-image" />}
+
     <h1 class="project-title">{title} <span class="project-venue">({venue})</span></h1>
     <p class="project-authors">{authors}</p>
-    {skill && <p class="project-skill"><strong>Skill:</strong> {skill}</p>}
-    <img src={image} alt={title} class="project-image" />
     <p class="project-abstract">{abstract}</p>
     {keywords && <p class="project-keywords"><strong>Keywords:</strong> {keywords}</p>}
+    {citation && <p class="project-citation"><strong>Publication:</strong> {citation}</p>}
     {links.length > 0 && (
       <p class="project-links">
         {links.map((link, i) => (
@@ -45,17 +92,43 @@ const { title, image, authors, venue, abstract, keywords, skill, links, demos = 
         ))}
       </p>
     )}
+
+    {gallery.length > 0 && galleryPosition === 'bottom' && (
+      <div class={`project-gallery project-gallery--${galleryStyle}`}>
+        {gallery.map((src) => (
+          <img src={src} alt="" loading="lazy" class="project-gallery-image" />
+        ))}
+      </div>
+    )}
+
+    {(video || youtubeId) && mediaPosition === 'bottom' && (
+      <>
+        {video && <video src={video} controls class="project-video" />}
+        {youtubeId && (
+          <div class="project-youtube">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}`}
+              title={title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        )}
+      </>
+    )}
+
     {demos.length > 0 && (
       <div class="project-demos">
         {demos.map((demo) => (
           <div class="project-demo">
             <h2 class="demo-heading">{demo.heading}</h2>
             <img src={demo.image} alt={demo.heading} class="demo-image" />
-            <p class="demo-caption">{demo.caption}</p>
+            {demo.caption && <p class="demo-caption">{demo.caption}</p>}
           </div>
         ))}
       </div>
     )}
+    <slot />
   </article>
 </Layout>
 
@@ -67,13 +140,13 @@ const { title, image, authors, venue, abstract, keywords, skill, links, demos = 
   }
 
   .project {
-    max-width: 700px;
+    max-width: 980px;
     padding-bottom: 60px;
   }
 
   .project-title {
-    font-size: 26px;
-    margin-bottom: 8.5px;
+    font-size: 20px;
+    margin: 24px 0 8.5px;
   }
 
   .project-venue {
@@ -89,17 +162,59 @@ const { title, image, authors, venue, abstract, keywords, skill, links, demos = 
     font-style: italic;
   }
 
-  .project-skill {
-    margin: 8px 0 0;
-    font-size: 15px;
-    line-height: 27px;
+  .project-video {
+    width: 100%;
+    display: block;
+    margin: 24px 0;
+  }
+
+  .project-youtube {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 24px 0;
+  }
+
+  .project-youtube iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   .project-image {
     width: 100%;
-    max-width: 500px;
     display: block;
     margin: 24px 0;
+  }
+
+  .project-gallery--thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin: 24px 0;
+  }
+
+  .project-gallery--thumbnails .project-gallery-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .project-gallery--masonry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0;
+  }
+
+  .project-gallery--masonry .project-gallery-image {
+    height: 260px;
+    width: auto;
+    flex: 1 1 auto;
+    object-fit: cover;
   }
 
   .project-abstract {
@@ -118,6 +233,12 @@ const { title, image, authors, venue, abstract, keywords, skill, links, demos = 
     font-size: 15px;
     line-height: 27px;
     color: var(--muted);
+  }
+
+  .project-citation {
+    margin: 12px 0 0;
+    font-size: 15px;
+    line-height: 27px;
   }
 
   .project-demos {
