@@ -256,20 +256,18 @@ const gallery = [
 
   .gallery {
     margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(5, 178px);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
   }
 
   .gallery img {
     width: 178px;
     height: 178px;
-    aspect-ratio: 1 / 1;
     object-fit: cover;
   }
 
   .mid-gallery {
-    grid-template-columns: repeat(2, 178px);
     margin: 20px 0;
   }
 
@@ -290,14 +288,13 @@ const gallery = [
       display: none;
     }
     .gallery {
-      grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
     .gallery img {
       width: 100%;
       height: auto;
-    }
-    .mid-gallery {
-      grid-template-columns: repeat(2, 1fr);
+      aspect-ratio: 1 / 1;
     }
   }
 </style>
