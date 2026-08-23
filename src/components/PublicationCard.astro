@@ -30,7 +30,7 @@ const authorParts = authors.split('Yuyu Lin');
       ))}
     </p>
     {award && <p class="pub-award">{award}</p>}
-    <p class="pub-abstract">{abstract}</p>
+    <p class="pub-abstract"><strong>Abstract:</strong> {abstract}</p>
     <p class="pub-links">
       {links.map((link, i) => (
         <>
@@ -47,7 +47,7 @@ const authorParts = authors.split('Yuyu Lin');
     display: grid;
     grid-template-columns: 331px 1fr;
     gap: 34px;
-    padding: 16px 0;
+    padding: 32px 0;
   }
 
   .pub-image {
@@ -91,6 +91,7 @@ const authorParts = authors.split('Yuyu Lin');
     margin: 12px 0 0;
     font-size: 15px;
     line-height: 27px;
+    text-align: justify;
   }
 
   .pub-links {
