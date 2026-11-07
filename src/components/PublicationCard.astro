@@ -10,17 +10,16 @@ interface Props {
   authors: string;
   venue: string;
   award?: string;
-  abstract: string;
   links: Link[];
 }
 
-const { image, title, authors, venue, award, abstract, links } = Astro.props;
+const { image, title, authors, venue, award, links } = Astro.props;
 const authorParts = authors.split('Yuyu Lin');
 ---
 <article class="pub-card">
   <img src={image} alt={title} class="pub-image" loading="lazy" />
   <div class="pub-body">
-    <h3 class="pub-title">{title} <span class="pub-venue">({venue})</span></h3>
+    <h3 class="pub-title">{title}</h3>
     <p class="pub-authors">
       {authorParts.map((part, i) => (
         <>
@@ -29,13 +28,15 @@ const authorParts = authors.split('Yuyu Lin');
         </>
       ))}
     </p>
-    {award && <p class="pub-award">{award}</p>}
-    <p class="pub-abstract"><strong>Abstract:</strong> {abstract}</p>
+    <p class="pub-conference">{venue}</p>
+    {award && <p class="pub-award"><span class="award-icon" aria-hidden="true"></span>{award}</p>}
     <p class="pub-links">
       {links.map((link, i) => (
         <>
           {i > 0 && " | "}
-          <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+          {link.href.startsWith('/')
+            ? <a href={link.href}>{link.label}</a>
+            : <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>}
         </>
       ))}
     </p>
@@ -45,14 +46,14 @@ const authorParts = authors.split('Yuyu Lin');
 <style>
   .pub-card {
     display: grid;
-    grid-template-columns: 331px 1fr;
-    gap: 34px;
+    grid-template-columns: var(--col-image) 1fr;
+    gap: var(--col-gap);
     padding: 32px 0;
   }
 
   .pub-image {
     width: 100%;
-    max-width: 331px;
+    max-width: var(--col-image);
     aspect-ratio: 1 / 1;
     object-fit: cover;
   }
@@ -65,33 +66,41 @@ const authorParts = authors.split('Yuyu Lin');
     margin: 8.5px 0;
   }
 
-  .pub-venue {
-    font-family: var(--font-light);
-    font-weight: 300;
-    color: var(--muted);
+  .pub-conference {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 27px;
   }
 
   .pub-authors {
     margin: 8px 0 0;
     font-size: 15px;
     line-height: 27px;
-    font-style: italic;
     color: var(--text);
   }
 
   .pub-award {
+    width: fit-content;
+    max-width: 100%;
     margin: 8px 0 0;
+    padding: 1px 10px;
+    border-radius: 6px;
+    background: #ececec;
     font-size: 15px;
     line-height: 27px;
     font-family: var(--font-heavy);
     font-weight: 800;
   }
 
-  .pub-abstract {
-    margin: 12px 0 0;
-    font-size: 15px;
-    line-height: 27px;
-    text-align: justify;
+  .award-icon {
+    display: inline-block;
+    height: 1.3em;
+    aspect-ratio: 104 / 124;
+    margin-right: 0.45em;
+    vertical-align: -0.3em;
+    background-color: currentColor;
+    -webkit-mask: url('/images/award.png') center / contain no-repeat;
+    mask: url('/images/award.png') center / contain no-repeat;
   }
 
   .pub-links {

@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PublicationCard from '../components/PublicationCard.astro';
+import MoreWork from '../components/MoreWork.astro';
+
+const chi = (yy) => `ACM CHI Conference on Human Factors in Computing Systems (CHI '${yy})`;
+const uist = (yy) => `ACM Symposium on User Interface Software and Technology (UIST '${yy})`;
 
 const news = [
   { date: '07/2026', prefix: 'Gave two talks at the ', linkLabel: 'CHARM Lab', href: 'https://charm.stanford.edu/', suffix: ' and HCI lunch at Stanford!' },
@@ -9,79 +13,145 @@ const news = [
   { date: '01/2026', text: 'Gave three talks at Zhejiang University, Tsinghua University and China Academy of Art' },
 ];
 
-const publications = [
+const sections = [
   {
-    image: '/images/knee-exo.jpg',
-    title: 'Towards Accessible Mobility Support: User-Centered Design of a Passive, Multi-Functional, Low-Cost Knee Exoskeleton',
-    venue: "CHI'26",
-    authors: 'Yuyu Lin, Yujia Liu, Emma Kim, Alexandra Ion',
-    abstract:
-      'Walking aids are critical for people with mobility impairments, yet current options remain unsatisfactory. Static knee braces are lightweight and affordable, but their rigid joints force users into unnatural gait patterns, leading to fatigue, reduced safety, and high abandonment rates. Robotic exoskeletons, in contrast, offer dynamic assistance that adapts to gait phases but rely on sensors, motors, and batteries that make them heavy, complex, and prohibitively expensive. In this paper, we propose a fully passive knee exoskeleton design that combines the accessibility of static braces with the adaptive functionality of robotic systems. Our design employs a mechanical trigger under the foot to lock and release the knee joint in sync with the gait cycle, enabling more natural walking without electronics or actuation. Using human-centered methods, we conducted interviews with clinicians and orthosis users to guide our design and evaluated an early prototype as a design probe with stakeholders.',
-    links: [
-      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2026-04-knee-exoskeleton/' },
-      { label: 'DOI', href: 'https://doi.org/10.1145/3772318.3791886' },
-      { label: 'Video', href: 'https://youtu.be/OQARGLUTGTw' },
-      { label: 'Preview', href: 'https://youtu.be/DC7gqt8v-yM' },
-      { label: 'CMU SCS News', href: 'https://www.cs.cmu.edu/news/2026/stepping-toward-better-mobility' },
+    heading: 'Unpowered Intelligence',
+    main: [
+      {
+        image: '/images/knee-exo.webp',
+        title: 'Towards Accessible Mobility Support: User-Centered Design of a Passive, Multi-Functional, Low-Cost Knee Exoskeleton',
+        venue: chi('26'),
+        authors: 'Yuyu Lin, Yujia Liu, Emma Kim, Alexandra Ion',
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2026-04-knee-exoskeleton/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3772318.3791886' },
+          { label: 'Video', href: 'https://youtu.be/OQARGLUTGTw' },
+          { label: 'Preview', href: 'https://youtu.be/DC7gqt8v-yM' },
+          { label: 'CMU SCS News', href: 'https://www.cs.cmu.edu/news/2026/stepping-toward-better-mobility' },
+        ],
+      },
+      {
+        image: '/images/bistable-brace.png',
+        title: 'Personalized Bistable Orthoses for Rehabilitation of Finger Joints',
+        venue: uist('25'),
+        authors: 'Yuyu Lin, Dian Zhu, Anoushka Naidu, Kenneth Yu, Deon Harper, Eni Halilaj, Douglas Weber, Deborah Ellen Kenney, Adam J. Popchak, Mark Baratz, Alexandra Ion',
+        award: "Best Demo Honorable Mention (Jury's Choice)",
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-09-bistable-brace/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3746059.3747643' },
+          { label: 'Video', href: 'https://youtu.be/i9aP490Lh38' },
+          { label: 'Preview', href: 'https://youtu.be/2-JZrDFOS8s' },
+          { label: 'CMU SCS News', href: 'https://www.cs.cmu.edu/news/2025/flexible-finger-braces' },
+        ],
+      },
+      {
+        image: '/images/wearable-mat-prop.jpg',
+        title: 'Wearable Material Properties: Passive Wearable Microstructures as Adaptable Interfaces for the Physical Environment',
+        venue: chi('25'),
+        authors: 'Yuyu Lin, Hatice Gokcen Guner, Jianzhe Gu, Sonia Prashant, Alexandra Ion',
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-04-wearable-mat-prop/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3706598.3714215' },
+          { label: 'Video', href: 'https://youtu.be/AqQ9LccZEow' },
+          { label: 'Preview', href: 'https://www.youtube.com/watch?v=ZPdKW3tCTfo' },
+        ],
+      },
+    ],
+    more: [
+      {
+        image: '/images/thumb-metabeads.jpg',
+        title: 'MetaBeads: Enabling Shape- and Stiffness-Changing Interfaces through Beaded Metamaterials',
+        venue: uist('26'),
+        authors: 'Yujia Liu, Yuyu Lin, Xie He, Victoria Sun, Trevor Jones, Alexandra Ion',
+        award: "Best Demo Honorable Mention (Jury's Choice)",
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2026-11-metabeads/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3830398.3830618' },
+          { label: 'Video', href: 'https://youtu.be/7ior2RdtksU' },
+        ],
+      },
+      {
+        image: '/images/thumb-parametric-haptics.jpg',
+        title: 'Parametric Haptics: Versatile Geometry-based Tactile Feedback Devices',
+        venue: uist('23'),
+        authors: 'Violet Yinuo Han, Abena Boadi-Agyemang, Yuyu Lin, David Lindlbauer, Alexandra Ion',
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2023-10-parametric-haptics/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3586183.3606766' },
+          { label: 'Video', href: 'https://youtu.be/PIUCEdw4UqA' },
+        ],
+      },
     ],
   },
   {
-    image: '/images/bistable-brace.jpg',
-    title: 'Personalized Bistable Orthoses for Rehabilitation of Finger Joints',
-    venue: "UIST'25",
-    authors: 'Yuyu Lin, Dian Zhu, Anoushka Naidu, Kenneth Yu, Deon Harper, Eni Halilaj, Douglas Weber, Deborah Ellen Kenney, Adam J. Popchak, Mark Baratz, Alexandra Ion',
-    award: "Best Demo Honorable Mention (Jury's Choice)",
-    abstract:
-      "Orthoses are essential components of rehabilitation, yet limited in functionality. Static braces immobilize joints, which, especially for hand and finger injuries, interfere with users' daily activities. Additionally, early mobilization schedules require users to take off and reapply their static orthoses frequently, which is cumbersome. To facilitate both rehabilitation and dexterity, we introduce a novel multifunctional yet unpowered finger orthosis design. Our design supports easy switching between two distinct states: a stiff state for immobilization and a flexible state for mobilization. A key benefit is that it can be customized using our computational design tool, and 3D printed in one piece. Our computational design pipeline supports tailoring the switching thresholds of the brace based on patients' individual finger strengths and range of motion. Following a preliminary study with 10 healthy people that validates the usability and wearability of the brace, our two-week case study with a patient indicates that our brace supports everyday activities and assists with rehabilitation.",
-    links: [
-      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-09-bistable-brace/' },
-      { label: 'DOI', href: 'https://doi.org/10.1145/3746059.3747643' },
-      { label: 'Video', href: 'https://youtu.be/i9aP490Lh38' },
-      { label: 'Preview', href: 'https://youtu.be/2-JZrDFOS8s' },
-      { label: 'CMU SCS News', href: 'https://www.cs.cmu.edu/news/2025/flexible-finger-braces' },
+    heading: 'Earlier work: Robotic Intelligence',
+    main: [
+      {
+        image: '/images/coneact.jpg',
+        title: 'ConeAct: A Multistable Actuator for Dynamic Materials',
+        venue: chi('24'),
+        authors: 'Yuyu Lin, Jesse T. Gonzalez, Zhitong Cui, Yash Rajeev Banka, Alexandra Ion',
+        links: [
+          { label: 'Project Page', href: 'https://interactive-structures.org/publications/2024-05-coneact/' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3613904.3642949' },
+          { label: 'Video', href: 'https://www.youtube.com/watch?v=_nHfBX1utmI&t=5s' },
+          { label: 'Preview', href: 'https://www.youtube.com/watch?v=aN3d8D7VyKU' },
+        ],
+      },
+    ],
+    more: [
+      {
+        image: '/images/thumb-pneumesh.jpg',
+        title: 'PneuMesh: Pneumatic-driven Truss-based Shape Changing System',
+        venue: chi('22'),
+        authors: 'Jianzhe Gu, Yuyu Lin, Qiang Cui, Xiaoqian Li, Jiaji Li, Lingyun Sun, Cheng Yao, Fangtian Ying, Guanyun Wang, Lining Yao',
+        links: [
+          { label: 'Project Page', href: '/pneumesh' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3491102.3502099' },
+        ],
+      },
+      {
+        image: '/images/thumb-cobbie.jpg',
+        title: 'It Is Your Turn: Collaborative Ideation with a Co-Creative Robot through Sketch',
+        venue: chi('20'),
+        authors: 'Yuyu Lin, Jiahao Guo, Yang Chen, Cheng Yao, Fangtian Ying',
+        links: [
+          { label: 'Project Page', href: '/cobbie' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3313831.3376258' },
+        ],
+      },
+      {
+        image: '/images/batik-step1.jpg',
+        title: 'BatikGuide: Comparing the Tangible Tutorial System and the Human Teacher in Intangible Cultural Heritage Education',
+        venue: "ACM Designing Interactive Systems Conference (DIS '20)",
+        authors: 'Jiahao Guo, Yuyu Lin, Hongyu Yang, Junwu Wang, Shuo Li, Enmao Liu, Cheng Yao, Fangtian Ying',
+        links: [
+          { label: 'Project Page', href: '/batikguide' },
+          { label: 'DOI', href: 'https://doi.org/10.1145/3357236.3395449' },
+        ],
+      },
+      {
+        image: '/images/thumb-aquabot.jpg',
+        title: 'AquaBot: An Interactive System for Digital Water Play',
+        venue: "International Conference on Human-Computer Interaction (HCII 2019)",
+        authors: 'Lijuan Liu, Cheng Yao, Yuyu Lin, Yang Chen, Ziyu Liu, Fangtian Ying',
+        links: [
+          { label: 'Project Page', href: '/aquabot' },
+          { label: 'DOI', href: 'https://doi.org/10.1007/978-3-030-21935-2_2' },
+        ],
+      },
+      {
+        image: '/images/thumb-olfacenhancer.jpg',
+        title: 'OlfacEnhancer: A Vision-Based Scented Necklace for Cross-Modal Interactions',
+        venue: "Design and Semantics of Form and Movement (DeSForM 2019)",
+        authors: 'Yuyu Lin, Kai Zheng, Jiahao Guo, Cheng Yao, Fangtian Ying',
+        links: [
+          { label: 'Project Page', href: '/olfacenhancer' },
+          { label: 'DOI', href: 'https://doi.org/10.21428/5395bc37.9450319d' },
+        ],
+      },
     ],
   },
-  {
-    image: '/images/wearable-mat-prop.jpg',
-    title: 'Wearable Material Properties: Passive Wearable Microstructures as Adaptable Interfaces for the Physical Environment',
-    venue: "CHI'25",
-    authors: 'Yuyu Lin, Hatice Gokcen Guner, Jianzhe Gu, Sonia Prashant, Alexandra Ion',
-    abstract:
-      'Users interact with static objects daily, but their preferences and needs may vary. Making the objects dynamic or adaptable requires updating all objects. Instead, we propose a novel wearable interface that empowers users to adjust perceived material properties. To explore such wearable interfaces, we design unit cell structures that can be tiled to create surfaces with switchable properties. Each unit can be switched between two states while worn, through an integrated bistable spring and tendon-driven trigger mechanism. Our switchable properties include stiffness, height, shape, texture, and their combinations. Our wearable material interfaces are passive, 3D printed, and personalizable. We present a design tool to support users in designing their customized wearable material properties. We demonstrate several example prototypes, e.g., a sleeve allowing users to adapt to how different surfaces feel, a shoe sole for users walking on different ground conditions, a prototype supporting both pillow and protective helmet properties, or a collar that can be transformed into a neck pillow with variable support.',
-    links: [
-      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2025-04-wearable-mat-prop/' },
-      { label: 'DOI', href: 'https://doi.org/10.1145/3706598.3714215' },
-      { label: 'Video', href: 'https://youtu.be/AqQ9LccZEow' },
-      { label: 'Preview', href: 'https://www.youtube.com/watch?v=ZPdKW3tCTfo' },
-    ],
-  },
-  {
-    image: '/images/coneact.jpg',
-    title: 'ConeAct: A Multistable Actuator for Dynamic Materials',
-    venue: "CHI'24",
-    authors: 'Yuyu Lin, Jesse T. Gonzalez, Zhitong Cui, Yash Rajeev Banka, Alexandra Ion',
-    abstract:
-      'Complex actuators in a small form factor are essential for dynamic interfaces. In this paper, we propose ConeAct, a cone-shaped actuator that can extend, contract, and bend in multiple directions to support rich expression in dynamic materials. A key benefit of our actuator is that it is self-contained and portable as the whole system. We designed our actuator’s structure to be multistable to hold its shape passively, while we control its transition between states using active materials, i.e., shape memory alloys. We present the design space by showcasing our actuator module as part of self-rolling robots, reconfigurable deployable structures, volumetric shape-changing objects and tactile displays. To assist users in designing such structures, we present an interactive editor including simulation to design such interactive capabilities.',
-    links: [
-      { label: 'Project Page', href: 'https://interactive-structures.org/publications/2024-05-coneact/' },
-      { label: 'DOI', href: 'https://doi.org/10.1145/3613904.3642949' },
-      { label: 'Video', href: 'https://www.youtube.com/watch?v=_nHfBX1utmI&t=5s' },
-      { label: 'Preview', href: 'https://www.youtube.com/watch?v=aN3d8D7VyKU' },
-    ],
-  },
-];
-
-const midGallery = [
-  { src: '/images/gallery-new-1.jpg', href: null },
-  { src: '/images/gallery-3.jpg', href: 'https://interactive-structures.org/publications/2023-10-parametric-haptics/' },
-];
-
-const gallery = [
-  { src: '/images/gallery-1.jpg', href: '/pneumesh' },
-  { src: '/images/gallery-2.jpg', href: '/cobbie' },
-  { src: '/images/gallery-4.jpg', href: '/aquabot' },
-  { src: '/images/gallery-5.jpg', href: '/olfacenhancer' },
-  { src: '/images/batik-step1.jpg', href: '/batikguide' },
 ];
 ---
 <Layout>
@@ -92,11 +162,11 @@ const gallery = [
         Hi, I'm a Ph.D. student in the
         <a href="https://interactive-structures.org/" target="_blank" rel="noopener noreferrer">Interactive Structures Lab</a>
         at Carnegie Mellon University (CMU) Human-Computer Interaction Institute (HCII), advised by <strong>Prof. Alexandra Ion</strong>.
-        I intern at <a href="https://med.stanford.edu/ladd-lab/get-involved.html" target="_blank" rel="noopener noreferrer">Ladd Lab</a> in the summer of 2026 at Stanford University School of Medicine, advised by <strong>Dr. Amy Ladd</strong> and <strong>Deborah Kenney</strong>.
+        I intern at <a href="https://med.stanford.edu/ladd-lab/get-involved.html" target="_blank" rel="noopener noreferrer">Ladd Lab</a> in the summer of 2026 at Stanford University School of Medicine, working with <strong>Dr. Amy Ladd</strong> and <strong>Deborah Kenney</strong>.
       </p>
       <p>
         I develop <strong>robotic functionality through mechanical intelligence</strong>. Working at the intersection of human-computer interaction,
-        mechanical engineering, computer graphics, and medicine, I introduce a new class of fully passive rehabilitative and assistive wearables
+        mechanical engineering, computer graphics, and healthcare, I introduce a new class of fully passive rehabilitative and assistive wearables
         that mimic the adaptive behaviors of robotic systems. I design, computationally model, and fabricate these personalized,
         fully unpowered devices, and evaluate them with clinicians and patients.
       </p>
@@ -139,44 +209,32 @@ const gallery = [
     </div>
   </section>
 
-  <section class="work">
-    <h2>Unpowered Intelligence</h2>
-    {publications.slice(0, 3).map((pub) => <PublicationCard {...pub} />)}
-  </section>
-
-  <section class="gallery mid-gallery">
-    {midGallery.map(({ src, href }) =>
-      href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer"><img src={src} alt="" loading="lazy" /></a>
-      ) : (
-        <img src={src} alt="" loading="lazy" />
-      )
-    )}
-  </section>
-
-  <section class="work">
-    <h2>Earlier work: Robotic Intelligence</h2>
-    {publications.slice(3).map((pub) => <PublicationCard {...pub} />)}
-  </section>
-
-  <section class="gallery">
-    {gallery.map(({ src, href }) => (
-      <a href={href}><img src={src} alt="" loading="lazy" /></a>
-    ))}
-  </section>
+  {sections.map((section) => (
+    <section class="work">
+      <h2>{section.heading}</h2>
+      {section.main.map((pub) => <PublicationCard {...pub} />)}
+      {section.more.length > 0 && (
+        <MoreWork previews={section.more.map((pub) => pub.image)}>
+          {section.more.map((pub) => <PublicationCard {...pub} />)}
+        </MoreWork>
+      )}
+    </section>
+  ))}
 </Layout>
 
 <style>
   .hero {
     display: grid;
-    grid-template-columns: 331px 1fr;
-    gap: 34px;
+    grid-template-columns: var(--col-image) 1fr;
+    gap: var(--col-gap);
     padding: 40px 0 16px;
   }
 
   .hero-photo {
-    width: 328px;
-    height: 328px;
+    width: 100%;
+    max-width: var(--col-image);
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     align-self: start;
   }
@@ -188,8 +246,8 @@ const gallery = [
 
   .news-section {
     display: grid;
-    grid-template-columns: 331px 1fr;
-    gap: 34px;
+    grid-template-columns: var(--col-image) 1fr;
+    gap: var(--col-gap);
     padding-bottom: 40px;
   }
 
@@ -238,10 +296,14 @@ const gallery = [
     border-top: 1px solid #eee;
   }
 
+  .work + .work {
+    margin-top: 40px;
+  }
+
   .intelligence {
     display: grid;
-    grid-template-columns: 331px 1fr;
-    gap: 34px;
+    grid-template-columns: var(--col-image) 1fr;
+    gap: var(--col-gap);
     padding: 40px 0 60px;
     border-top: 1px solid #eee;
   }
@@ -253,9 +315,20 @@ const gallery = [
   }
 
   .intelligence h2 {
-    font-size: 28px;
-    width: 100%;
+    align-self: start;
+    justify-self: start;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #ececec;
+    white-space: nowrap;
+    font-size: 22px;
     margin-bottom: 24px;
+  }
+
+  .intelligence h2 em {
+    font-family: var(--font-light);
+    font-weight: 400;
   }
 
   .intelligence-image {
@@ -265,26 +338,11 @@ const gallery = [
 
   .intelligence p {
     width: 100%;
+    font-size: 14px;
+    line-height: 25px;
     margin-top: 0;
     margin-bottom: 24px;
     text-align: justify;
-  }
-
-  .gallery {
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .gallery img {
-    width: 178px;
-    height: 178px;
-    object-fit: cover;
-  }
-
-  .mid-gallery {
-    margin: 20px 0;
   }
 
   @media (max-width: 720px) {
@@ -305,15 +363,6 @@ const gallery = [
     }
     .intelligence {
       grid-template-columns: 1fr;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
     }
   }
 </style>

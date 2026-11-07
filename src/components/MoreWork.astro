@@ -1,0 +1,109 @@
+---
+interface Props {
+  previews?: string[];
+}
+
+const { previews = [] } = Astro.props;
+---
+<details class="more">
+  <summary>
+    {previews.length > 0 && (
+      <span class="more-previews" aria-hidden="true">
+        {previews.map((src) => <img src={src} alt="" loading="lazy" />)}
+      </span>
+    )}
+    <span class="more-toggle">
+      <span class="label-more">More</span><span class="label-less">Less</span>
+    </span>
+  </summary>
+  <slot />
+</details>
+
+<style>
+  .more {
+    --thumb: calc((var(--col-image) - 8px) / 2);
+  }
+
+  .more > summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px var(--col-gap);
+    margin-top: 8px;
+    padding: 4px 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-family: var(--font-heavy);
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 30.6px;
+  }
+
+  .more > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .more > summary:hover {
+    opacity: 0.7;
+  }
+
+  .more-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .more-previews img {
+    display: block;
+    width: var(--thumb);
+    height: var(--thumb);
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .more[open] .more-previews {
+    display: none;
+  }
+
+  .more-toggle {
+    padding-top: 8.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .more[open] .more-toggle {
+    margin-left: calc(var(--col-image) + var(--col-gap));
+  }
+
+  .more-toggle::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  .more[open] .more-toggle::after {
+    transform: translateY(2px) rotate(-135deg);
+  }
+
+  .label-less,
+  .more[open] .label-more {
+    display: none;
+  }
+
+  .more[open] .label-less {
+    display: inline;
+  }
+
+  @media (max-width: 640px) {
+    .more[open] .more-toggle {
+      margin-left: 0;
+    }
+  }
+</style>
